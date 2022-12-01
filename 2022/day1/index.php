@@ -6,5 +6,9 @@ function sum($a,$b) {
 	return $a;
 }
 
+//part 1
 $red = array_reduce($ents,"sum");
 var_dump(max($red));
+//part2
+rsort($red);
+var_dump($red[0]+$red[1]+$red[2]);
