@@ -9,8 +9,7 @@ def mySum(carriage, item):
     if item:
         vals = {"A":1,"B":2,"C":3,"X":1,"Y":2,"Z":3}
         scor = [0,3,6]
-        value = vals[item[2]]
-        value = vals[item[2]] + scor[1] if vals[item[0]] - vals[item[2]] == +0 else value
+        value = vals[item[2]] + scor[1] if vals[item[0]] - vals[item[2]] == +0 else vals[item[2]]
         value = vals[item[2]] + scor[2] if vals[item[0]] - vals[item[2]] == -1 else value
         value = vals[item[2]] + scor[2] if vals[item[0]] - vals[item[2]] == +2 else value
         carriage.append(value)
