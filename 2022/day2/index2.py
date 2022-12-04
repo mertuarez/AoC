@@ -8,10 +8,11 @@ ents = input.split('\n')
 def mySum(carriage, item):
     if item:
         vals = {"A":1,"B":2,"C":3,"X":1,"Y":2,"Z":3}
+        scor = [0,3,6]
         value = vals[item[2]];
-        value += 3 if vals[item[0]] - vals[item[2]] == +0 else 0
-        value += 6 if vals[item[0]] - vals[item[2]] == -1 else 0
-        value += 6 if vals[item[0]] - vals[item[2]] == +2 else 0
+        value += scor[1] if vals[item[0]] - vals[item[2]] == +0 else 0
+        value += scor[2] if vals[item[0]] - vals[item[2]] == -1 else 0
+        value += scor[2] if vals[item[0]] - vals[item[2]] == +2 else 0
         carriage.append(value)
     return carriage
 
