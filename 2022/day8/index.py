@@ -78,8 +78,6 @@ def mySum(lines,xx,yy):
                 r+=1
                 break
 
-
-
     return t*l*b*r
 
 def myScan2(lines):
@@ -89,6 +87,7 @@ def myScan2(lines):
             visible[x][y] = mySum(lines,x,y)
 
     return visible
+
 
 #part 1
 field = myScan(ents)
