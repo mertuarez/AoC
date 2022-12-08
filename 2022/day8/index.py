@@ -41,42 +41,21 @@ def myScan(lines):
 
 def mySum(lines,xx,yy):
     treeA = int(lines[xx][yy])
-    l = 0
-    r = 0
-    t = 0
-    b = 0
+    t = l = b = r = 0
 
     for x in range(0,len(lines)-1):
         treeB = int(lines[x][yy])
-        if x == xx:
-            continue
-        elif x < xx:
-            if treeA>treeB:
-                t+=1
-            else:
-                t=1
+        if   x < xx: t = t+1 if treeA>treeB else 1
         elif x > xx:
-            if treeA>treeB:
-                b+=1
-            else:
-                b+=1
-                break
+            b+= 1
+            if not treeA>treeB: break
 
     for y in range(0,len(lines[0])):
         treeB = int(lines[xx][y])
-        if y == yy:
-            continue
-        elif y < yy:
-            if treeA>treeB:
-                l+=1
-            else:
-                l=1
+        if   y < yy: l = l+1 if treeA>treeB else 1
         elif y > yy:
-            if treeA>treeB:
-                r+=1
-            else:
-                r+=1
-                break
+            r+= 1
+            if not treeA>treeB: break
 
     return t*l*b*r
 
