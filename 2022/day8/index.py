@@ -80,7 +80,7 @@ def mySum(lines,xx,yy):
 
 
 
-    return [t*l*b*r]
+    return t*l*b*r
 
 def myScan2(lines):
     visible = [[0 for element in range(len(lines[0]))] for element in range(len(lines)-1)]
@@ -103,6 +103,6 @@ print(summary)
 field = myScan2(ents)
 maximum = 0
 for x in range(len(field)):
-    maximum = max(maximum,max(field[x])[0])
+    maximum = max(maximum,max(field[x]))
 
 print(maximum)
