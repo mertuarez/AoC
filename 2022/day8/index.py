@@ -1,6 +1,3 @@
-from functools import reduce
-import re
-
 with open('./input', 'r') as file:
     input = file.read()
 
@@ -12,32 +9,27 @@ RIGHT= 4 #0100
 DOWN = 8 #1000
 
 def myScan(lines):
-    visible = [[0 for element in range(len(lines[0]))] for element in range(len(lines)-1)]
-    borders = {
-                LEFT : [-1 for element in range(len(visible))],
-                UP   : [-1 for element in range(len(visible[0]))],
-                RIGHT: [-1 for element in range(len(visible))],
-                DOWN : [-1 for element in range(len(visible[0]))],
-            }
+    visible = [[0 for i in range(len(lines[0]))] for j in range(len(lines)-1)]
+    treeT = [-1 for element in range(len(visible))]
+    treeB = [-1 for element in range(len(visible))]
 
     for x in range(len(visible)):
+        treeL = -1
+        treeR = -1
         for y in range(len(visible[x])):
-            xx = len(visible)-(1+x)
+            xx = len(visible)   -(1+x)
             yy = len(visible[x])-(1+y)
-            treeTL = int(lines[x][y]);
-            treeTR = int(lines[x][yy]);
-            treeBL = int(lines[xx][y]);
-            treeBR = int(lines[xx][yy]);
 
-            visible[x][y]    |= (borders[LEFT][x]  < treeTL) * LEFT
-            visible[x][yy]   |= (borders[RIGHT][x] < treeTR) * RIGHT
-            visible[x][y]    |= (borders[UP][y]    < treeTL) * UP
-            visible[xx][yy]  |= (borders[DOWN][y]  < treeBR) * DOWN
+            visible[x ][y ] |= (int(lines[x ][y ]) > treeL   ) * LEFT
+            visible[x ][yy] |= (int(lines[x ][yy]) > treeR   ) * RIGHT
+            visible[x ][y ] |= (int(lines[x ][y ]) > treeT[y]) * UP
+            visible[xx][y ] |= (int(lines[xx][y ]) > treeB[y]) * DOWN
 
-            borders[LEFT][x]  = max(treeTL, borders[LEFT][x])
-            borders[RIGHT][x] = max(treeTR, borders[RIGHT][x])
-            borders[UP][y]    = max(treeTL, borders[UP][y])
-            borders[DOWN][y]  = max(treeBR, borders[DOWN][y])
+            treeL    = max(treeL,    int(lines[x ][y ]))
+            treeR    = max(treeR,    int(lines[x ][yy]))
+            treeT[y] = max(treeT[y], int(lines[x ][y ]))
+            treeB[y] = max(treeB[y], int(lines[xx][y ]))
+
     return visible
 
 def mySum(lines,xx,yy):
