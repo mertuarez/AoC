@@ -12,13 +12,14 @@ RIGHT= 4 #0100
 DOWN = 8 #1000
 
 def myScan(lines):
-    borders = {
-                LEFT : [-1 for element in range(len(lines)-1)],
-                UP   : [-1 for element in range(len(lines[0]))],
-                RIGHT: [-1 for element in range(len(lines)-1)],
-                DOWN : [-1 for element in range(len(lines[0]))],
-            }
     visible = [[0 for element in range(len(lines[0]))] for element in range(len(lines)-1)]
+    borders = {
+                LEFT : [-1 for element in range(len(visible))],
+                UP   : [-1 for element in range(len(visible[0]))],
+                RIGHT: [-1 for element in range(len(visible))],
+                DOWN : [-1 for element in range(len(visible[0]))],
+            }
+
     for x in range(len(visible)):
         for y in range(len(visible[x])):
             xx = len(visible)-(1+x)
